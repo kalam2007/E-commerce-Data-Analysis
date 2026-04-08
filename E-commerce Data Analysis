@@ -1,0 +1,26 @@
+import pandas as pd
+
+# Create dataset
+data = {
+    'CustomerID': [101, 102, 103, 101, 102],
+    'Product': ['Shoes', 'Shirt', 'Watch', 'Shoes', 'Watch'],
+    'Price': [2000, 1500, 3000, 2000, 3000],
+    'Quantity': [1, 2, 1, 3, 1]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset:\n", df)
+
+# Revenue
+df['Revenue'] = df['Price'] * df['Quantity']
+
+print("\nTotal Revenue:", df['Revenue'].sum())
+
+# Top products
+top_products = df.groupby('Product')['Revenue'].sum()
+print("\nTop Products:\n", top_products)
+
+# Customer spending
+customer_spending = df.groupby('CustomerID')['Revenue'].sum()
+print("\nCustomer Spending:\n", customer_spending)
